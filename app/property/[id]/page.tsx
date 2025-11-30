@@ -4,6 +4,9 @@ import { useState, Suspense } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
 import {
   ArrowLeft,
   Share2,

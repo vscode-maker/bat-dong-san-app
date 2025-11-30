@@ -15,6 +15,9 @@ import FilterBottomSheet from "@/components/filter-bottom-sheet"
 import MobileNavigation from "@/components/mobile-navigation"
 import { useProperties } from "@/hooks/useProperties"
 
+// Force dynamic rendering for this page
+export const dynamic = 'force-dynamic'
+
 // Property types mapping
 const propertyTypeNames = {
   apartment: "Căn hộ/Chung cư",

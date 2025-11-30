@@ -7,6 +7,9 @@ import PropertyCard from "@/components/property-card"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useMemo, Suspense } from "react"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 function ResultsPageContent() {
   const searchParams = useSearchParams()
 

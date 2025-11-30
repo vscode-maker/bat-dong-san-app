@@ -3,6 +3,9 @@
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import Link from "next/link"
+
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
 import { ArrowLeft, Search, MapPin, Bookmark, RotateCcw, Sparkles, Filter, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
