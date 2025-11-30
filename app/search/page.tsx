@@ -115,6 +115,14 @@ const mockProperties = [
   },
 ]
 
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<SearchPageSkeleton />}>
+      <SearchPageContent />
+    </Suspense>
+  )
+}
+
 function SearchPageContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -519,14 +527,6 @@ function SearchPageContent() {
 
       <MobileNavigation />
     </div>
-  )
-}
-
-export default function SearchPage() {
-  return (
-    <Suspense fallback={<SearchPageSkeleton />}>
-      <SearchPageContent />
-    </Suspense>
   )
 }
 
