@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -148,7 +148,7 @@ const companySlides = [
   },
 ]
 
-export default function HomePage() {
+function HomePageContent() {
   const searchParams = useSearchParams()
   const [searchQuery, setSearchQuery] = useState("")
   const [projectFavorites, setProjectFavorites] = useState<number[]>([])
@@ -806,6 +806,34 @@ export default function HomePage() {
         <div className="gradient-primary backdrop-blur-xl border-t border-white/20 shadow-lg">
           <MobileNavigation />
         </div>
+      </div>
+    </div>
+  )
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={<HomePageSkeleton />}>
+      <HomePageContent />
+    </Suspense>
+  )
+}
+
+function HomePageSkeleton() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 pb-20">
+      <div className="gradient-primary text-white p-4 pb-6 shadow-xl">
+        <div className="h-10 bg-white/20 rounded-lg animate-pulse mb-4" />
+        <div className="grid grid-cols-4 gap-2">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="h-20 bg-white/10 rounded-xl animate-pulse" />
+          ))}
+        </div>
+      </div>
+      <div className="p-4 space-y-4">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <div key={i} className="h-40 bg-white rounded-xl animate-pulse shadow-sm" />
+        ))}
       </div>
     </div>
   )

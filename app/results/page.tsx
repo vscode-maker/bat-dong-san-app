@@ -5,9 +5,9 @@ import { useProperties } from "@/hooks/useProperties"
 import type { PropertyFilters } from "@/types"
 import PropertyCard from "@/components/property-card"
 import { Skeleton } from "@/components/ui/skeleton"
-import { useMemo } from "react"
+import { useMemo, Suspense } from "react"
 
-export default function ResultsPage() {
+function ResultsPageContent() {
   const searchParams = useSearchParams()
 
   const filters = useMemo<PropertyFilters>(() => {
@@ -53,6 +53,28 @@ export default function ResultsPage() {
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {properties?.map((property) => (
         <PropertyCard key={property.id} property={property} />
+      ))}
+    </div>
+  )
+}
+
+export default function ResultsPage() {
+  return (
+    <Suspense fallback={<ResultsSkeleton />}>
+      <ResultsPageContent />
+    </Suspense>
+  )
+}
+
+function ResultsSkeleton() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {Array.from({ length: 8 }).map((_, i) => (
+        <div key={i} className="space-y-2">
+          <Skeleton className="h-40 w-full" />
+          <Skeleton className="h-4 w-2/3" />
+          <Skeleton className="h-4 w-1/2" />
+        </div>
       ))}
     </div>
   )
